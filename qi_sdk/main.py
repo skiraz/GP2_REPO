@@ -8,7 +8,7 @@ import sys
 from functions  import *
 
 port = 9559
-ip = "192.168.0.102"
+ip = "192.168.0.101"
 session =connect(ip,port)
 
 
@@ -16,14 +16,14 @@ session =connect(ip,port)
 
 # standup(session)
 # time.sleep(2)
-get_depth_image(session)
+# get_depth_image(session)
 time.sleep(2)
 # move_head(session)
 
 
 # tablet_service.wakeUp()
 print(7656587)
-sys.exit()
+
 
 
 
@@ -34,13 +34,17 @@ sys.exit()
 
 video_service = session.service("ALVideoDevice")
 
+
 # set parameters for depth image
 resolution = 2  # VGA resolution
 color_space = 11  # depth image in mm
 fps = 15  # frame rate
 video_client_name = "python_client"  # name of the client
 depth_camera_index = 1 # index of the depth camera
-video_service.subscribeCamera(video_client_name, depth_camera_index, resolution, color_space, fps)
+rgb_camera_index = 2 # index of the depth camera
+video_service.subscribeCamera(video_client_name, rgb_camera_index, resolution, color_space, fps)
+
+
 
 # get depth image
 image = None
@@ -48,7 +52,7 @@ while image is None:
     image = video_service.getImageRemote(video_client_name)
 
 width, height = image[0], image[1]
-depth_array = np.frombuffer(image[6], dtype=np.uint8).reshape([height, width, 2])[:, :, 0]  # convert to numpy array
+depth_array = np.frombuffer(image[6], dtype=np.uint8).reshape([height, width, 2])[:, :, 0]  # convert to numpy arrayذئذ
 
 # release video device
 video_service.unsubscribe(video_client_name)

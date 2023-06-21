@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot name="coke_can">
+  <material name="coke_texture">
+    <texture filename="D:\projects\graduation project\qi bullet simulation\pepsi.png"/>
+  </material>
+  <link name="link">
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.115" radius="0.03"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.115" radius="0.03"/>
+      </geometry>
+      <material name="coke_texture"/>
+    </visual>
+  </link>
+</robot>
